@@ -19,7 +19,7 @@
         <li *ngFor="let number of numbers">{{ number | formatNumberPure }}</li>
       </ul>
     </div>
-    <div class="impure-pipes" >
+    <div class="impure-pipes">
       <div>Impure pipes</div>
       <ul>
         <li *ngFor="let number of numbers">{{ number | formatNumberImpure }}</li>
@@ -27,6 +27,15 @@
     </div>
   </div>
   <button (click)="increment()">Increment Number</button>
+</div>
+
+
+<hr>
+<div style="margin: 20px;">
+  <h1>Custom directive example</h1>
+
+  <div appHighlight>Hover over me to highlight</div>
+
 </div>
 
 <!-- 
