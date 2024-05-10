@@ -6,11 +6,15 @@ import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { CounterComponent } from './components/counter/counter.component';
 import { counterReducer } from './store/reducers/counter.reducer';
+import { FormatNumberImpurePipe } from './pipes/format-number-impure.pipe';
+import { FormatNumberpurePipe } from './pipes/format-numberpure.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CounterComponent
+    CounterComponent,
+    FormatNumberImpurePipe,
+    FormatNumberpurePipe
   ],
   imports: [
     BrowserModule,

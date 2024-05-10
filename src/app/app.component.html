@@ -1,9 +1,26 @@
-<h3>pure pipe, impure pipe, custom pipe--with respect to change detection</h3>
+<h3>pure pipe, impure pipe, pipe chaining,  custom pipe--with respect to change detection</h3>
 <h3>custom directive, host listener, host binding</h3>
 <h3>send headers through http request, manual way, interceptor way</h3>
 
 
+
+<h1>Pure pipe and impure pipe example and Demo</h1>
+
+<ul>
+    <li *ngFor="let number of numbers">{{ number | formatNumberPure }}</li>
+  </ul>
+  
+  <ul>
+    <li *ngFor="let number of numbers">{{ number | formatNumberImpure }}</li>
+  </ul>
+
+
+  <button (click)="increment()">Increment Number</button>
+
+
+
+<!-- 
 <h1>NgRx Demo</h1>
 
 <app-counter></app-counter>
-<router-outlet></router-outlet>
+<router-outlet></router-outlet> -->
