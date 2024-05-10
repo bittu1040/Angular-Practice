@@ -1,0 +1,12 @@
+.main-box{
+    display: flex; gap: 10px; margin-bottom: 10px;
+}
+
+.pure-pipes{
+    height: 200px; width: 200px; border: 1px solid red; padding: 10px;
+}
+
+
+.impure-pipes{
+    height: 200px; width: 200px; border: 1px solid blue; padding: 10px;
+}
