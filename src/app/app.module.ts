@@ -9,6 +9,7 @@ import { counterReducer } from './store/reducers/counter.reducer';
 import { FormatNumberImpurePipe } from './pipes/format-number-impure.pipe';
 import { FormatNumberpurePipe } from './pipes/format-numberpure.pipe';
 import { customStyleDirective } from './directives/custom-style.directive';
+import { ChildComponent } from './components/child/child.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { customStyleDirective } from './directives/custom-style.directive';
     CounterComponent,
     FormatNumberImpurePipe,
     FormatNumberpurePipe,
-    customStyleDirective
+    customStyleDirective,
+    ChildComponent
   ],
   imports: [
     BrowserModule,
