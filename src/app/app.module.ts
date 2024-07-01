@@ -10,6 +10,8 @@ import { FormatNumberImpurePipe } from './pipes/format-number-impure.pipe';
 import { FormatNumberpurePipe } from './pipes/format-numberpure.pipe';
 import { customStyleDirective } from './directives/custom-style.directive';
 import { ChildComponent } from './components/child/child.component';
+import { RxjsOperatorComponent } from './components/rxjs-operator/rxjs-operator.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,11 +20,12 @@ import { ChildComponent } from './components/child/child.component';
     FormatNumberImpurePipe,
     FormatNumberpurePipe,
     customStyleDirective,
-    ChildComponent
+    ChildComponent,
+    RxjsOperatorComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    AppRoutingModule, HttpClientModule,
     StoreModule.forRoot({ count: counterReducer }), 
 
   ],
