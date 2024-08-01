@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, inject } from '@angular/core';
 import { combineLatest, forkJoin, from, interval, of, take } from 'rxjs';
-import { concat, delay, map, mergeMap, switchMap } from 'rxjs/operators';
+import {  concatMap, delay, exhaustMap, map, mergeMap, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rxjs-operator',
@@ -79,7 +79,7 @@ export class RxjsOperatorComponent implements OnInit{
     const example1 = source1.pipe(
       switchMap(val => of(val, val * 2, val * 3))
     );
-     const subscribe = example1.subscribe(val => console.log(val));
+      const subscribe = example1.subscribe(val => console.log(val));
 
     const source2 = of(1, 2, 3);
     const example2 = source2.pipe(
@@ -87,7 +87,7 @@ export class RxjsOperatorComponent implements OnInit{
     map(i => `Inner Observable ${val}: ${i}`),
     take(3))) // Limit each inner Observable to 3 emissions
     );
-     const subscribe2 = example2.subscribe(val => console.log("switch map",val));
+      const subscribe2 = example2.subscribe(val => console.log("switch map",val));
 
 
     //mergeMap
@@ -104,6 +104,33 @@ export class RxjsOperatorComponent implements OnInit{
     take(3)))
     );
     const subscribe4 = example4.subscribe(val => console.log("merge map",val));
+
+
+    // concatMap
+    const source5 = of(1, 2, 3);
+    const example5 = source5.pipe(
+    concatMap(val => interval(1000).pipe(
+    map(i => `Inner Observable ${val}: ${i}`),
+    take(3))) // Limit each inner Observable to 3 emissions
+    );
+
+    const subscribe5 = example5.subscribe(val => console.log("concat map", val));
+
+    // exhaustMap
+    const source6 = of(1);
+    const example6 = source6.pipe(
+      exhaustMap(val => interval(1000).pipe(
+        map(i => `Inner Observable ${val}: ${i}`),
+        take(3)))
+    );
+    
+    const subscribe6 = example6.subscribe(val => console.log(val));
+
+// switchMap: Cancels previous inner Observables when a new value is emitted.
+// mergeMap: Subscribes to all inner Observables concurrently.
+// concatMap: Subscribes to inner Observables sequentially.
+// exhaustMap: Ignores new inner Observables until the current one completes.
+
 
   }
 
