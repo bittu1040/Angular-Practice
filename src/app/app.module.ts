@@ -12,6 +12,8 @@ import { customStyleDirective } from './directives/custom-style.directive';
 import { ChildComponent } from './components/child/child.component';
 import { RxjsOperatorComponent } from './components/rxjs-operator/rxjs-operator.component';
 import { HttpClientModule } from '@angular/common/http';
+import { Comp1Component } from './view-encapsulation/comp1/comp1.component';
+import { Comp2Component } from './view-encapsulation/comp2/comp2.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { HttpClientModule } from '@angular/common/http';
     FormatNumberpurePipe,
     customStyleDirective,
     ChildComponent,
-    RxjsOperatorComponent
+    RxjsOperatorComponent,
+    Comp1Component,
+    Comp2Component
   ],
   imports: [
     BrowserModule,
