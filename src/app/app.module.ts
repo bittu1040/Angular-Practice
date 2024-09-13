@@ -14,6 +14,7 @@ import { RxjsOperatorComponent } from './components/rxjs-operator/rxjs-operator.
 import { HttpClientModule } from '@angular/common/http';
 import { Comp1Component } from './view-encapsulation/comp1/comp1.component';
 import { Comp2Component } from './view-encapsulation/comp2/comp2.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,10 +26,10 @@ import { Comp2Component } from './view-encapsulation/comp2/comp2.component';
     ChildComponent,
     RxjsOperatorComponent,
     Comp1Component,
-    Comp2Component
+    Comp2Component,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,FormsModule,ReactiveFormsModule,
     AppRoutingModule, HttpClientModule,
     StoreModule.forRoot({ count: counterReducer }), 
 

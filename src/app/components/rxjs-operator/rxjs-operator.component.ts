@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, inject } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { combineLatest, forkJoin, from, interval, of, take } from 'rxjs';
-import {  concatMap, delay, exhaustMap, map, mergeMap, switchMap } from 'rxjs/operators';
+import {  concatMap, debounceTime, delay, distinctUntilChanged, exhaustMap, map, mergeMap, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rxjs-operator',
@@ -10,8 +11,18 @@ import {  concatMap, delay, exhaustMap, map, mergeMap, switchMap } from 'rxjs/op
 })
 export class RxjsOperatorComponent implements OnInit{
   http= inject(HttpClient);
+  searchControl = new FormControl('');
+  searchTerm : string = '';
 
   constructor() {
+    this.searchControl.valueChanges.pipe(
+      debounceTime(600),
+      distinctUntilChanged()
+    ).subscribe((term:any) => {
+      this.searchTerm = term;
+      // Perform search operation here
+      console.log('Searching for:', term);
+    });
   }
 
   ofData=of(1,2,3,4,5);
@@ -31,7 +42,7 @@ export class RxjsOperatorComponent implements OnInit{
   obs2= of(10,20,30,40,50);
   obs3= of(100,200,300,400,500);
 
-  ngOnInit(): void {
+   ngOnInit(): void {
     this.ofData.subscribe((data)=>{
       console.log(data)
     })
@@ -126,13 +137,13 @@ export class RxjsOperatorComponent implements OnInit{
     
     const subscribe6 = example6.subscribe(val => console.log(val));
 
-// switchMap: Cancels previous inner Observables when a new value is emitted.
-// mergeMap: Subscribes to all inner Observables concurrently.
-// concatMap: Subscribes to inner Observables sequentially.
-// exhaustMap: Ignores new inner Observables until the current one completes.
+// // switchMap: Cancels previous inner Observables when a new value is emitted.
+// // mergeMap: Subscribes to all inner Observables concurrently.
+// // concatMap: Subscribes to inner Observables sequentially.
+// // exhaustMap: Ignores new inner Observables until the current one completes.
 
 
-  }
+   }
 
 
 
