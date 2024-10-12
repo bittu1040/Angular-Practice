@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FormatNumberImpurePipe implements PipeTransform {
   transform(value: number): string {
-    console.log('imPure pipe called');
+    // console.log('imPure pipe called');
     return value.toLocaleString(); // Formats number with commas
   }
 }

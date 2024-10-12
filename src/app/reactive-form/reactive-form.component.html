@@ -1,0 +1,10 @@
+<form [formGroup]="myForm">
+    <input formControlName="email" placeholder="Email">
+    <p *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+      Please enter a valid email.
+    </p>
+
+
+    <button (click)="logFormState()">Log Form State</button> <br>
+    <button (click)="resetForm()">Reset form</button>
+  </form>

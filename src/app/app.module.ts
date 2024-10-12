@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Comp1Component } from './view-encapsulation/comp1/comp1.component';
 import { Comp2Component } from './view-encapsulation/comp2/comp2.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RxjsOperatorComponent,
     Comp1Component,
     Comp2Component,
+    ReactiveFormComponent,
   ],
   imports: [
     BrowserModule,FormsModule,ReactiveFormsModule,
