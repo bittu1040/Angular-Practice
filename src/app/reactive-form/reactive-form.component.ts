@@ -13,10 +13,11 @@ export class ReactiveFormComponent {
 
   constructor(private fb: FormBuilder) {
     this.registrationForm = this.fb.group({
-      name: ['' , Validators.required],
+      name: ['bittu' , Validators.required],
       age: ['', [Validators.required, Validators.min(18)]],
       ageCheck: [false],
-      email: ['', [Validators.required, Validators.email]]
+      email: ['', [Validators.required, Validators.email]],
+      confirmEmail: ['', [Validators.required, Validators.email]]
     });
   }
 
@@ -35,16 +36,28 @@ export class ReactiveFormComponent {
       ageControl?.updateValueAndValidity();
     });
 
+    // email match validator
+    const emailControl = this.registrationForm.get('email');
+    const confirmEmailControl = this.registrationForm.get('confirmEmail');
+    confirmEmailControl?.valueChanges.subscribe(() => {
+      if (emailControl?.value !== confirmEmailControl?.value) {
+        confirmEmailControl?.setErrors({ 'emailMismatch': true });
+      } else {
+        confirmEmailControl?.setErrors(null);
+      }
+    });
+
   }
 
   onSubmit() {
     const ageCheckValue = this.ageCheck?.value;
 
+    if (!ageCheckValue) {
+      this.registrationForm.get('age')?.clearValidators();
+      this.registrationForm.get('age')?.updateValueAndValidity();
+    }
+    
     if (this.registrationForm.invalid) {
-      if (!ageCheckValue) {
-        this.registrationForm.get('age')?.clearValidators();
-        this.registrationForm.get('age')?.updateValueAndValidity();
-      }
       this.registrationForm.markAllAsTouched();
       this.isFormDirty = false;
       return;
@@ -74,6 +87,10 @@ export class ReactiveFormComponent {
     return this.registrationForm.get('email');
   }
 
+  get confirmEmail():AbstractControl | null {
+    return this.registrationForm.get('confirmEmail');
+  }
+
 
 
   resetForm() {
@@ -83,6 +100,7 @@ export class ReactiveFormComponent {
   logFormState() {
     console.log('Form Value:', this.registrationForm.value);
     console.log('Form Valid:', this.registrationForm.valid);
+    console.log('Form pristine:', this.registrationForm.pristine);
     console.log('Email Touched:', this.email?.touched);
     console.log('Email Dirty:', this.email?.dirty);
     console.log('Email Errors:', this.email?.errors);

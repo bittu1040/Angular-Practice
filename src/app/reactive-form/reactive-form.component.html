@@ -1,6 +1,6 @@
 <form [formGroup]="registrationForm">
     <label for="name">Name</label>
-    <input formControlName="name" type="text" placeholder="Name" (focus)="onInteraction()">
+    <input formControlName="name" type="text" placeholder="Name" >
     <div *ngIf="name?.touched && name?.invalid" class="error">
       Name is required.
     </div>
@@ -11,7 +11,7 @@
     <label for="ageCheck"> Age required</label><br>
   
     <label for="age">Age</label>
-    <input formControlName="age" type="number" placeholder="Age" (focus)="onInteraction()" >
+    <input formControlName="age" type="number" placeholder="Age" >
     <div *ngIf="age?.touched && age?.invalid" class="error">
       Age is required and must be at least 18.
     </div>
@@ -19,9 +19,18 @@
     <br><br>
   
     <label for="email">Email</label>
-    <input formControlName="email" type="email" placeholder="Email" (focus)="onInteraction()">
+    <input formControlName="email" type="email" placeholder="Email" >
     <div *ngIf="email?.touched && email?.invalid" class="error">
       A valid email is required.
+    </div>
+
+    <br><br>
+  
+    <label for="confirmEmail">Confirm Email</label>
+    <input formControlName="confirmEmail" type="email" placeholder="Confirm Email">
+    {{confirmEmail?.errors | json}}
+    <div *ngIf="confirmEmail?.dirty && confirmEmail?.hasError('emailMismatch')" class="error">
+      Email is not matching
     </div>
 
     <br><br>
