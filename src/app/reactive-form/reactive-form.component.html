@@ -1,10 +1,33 @@
-<form [formGroup]="myForm">
-    <input formControlName="email" placeholder="Email">
-    <p *ngIf="email?.invalid && (email?.dirty || email?.touched)">
-      Please enter a valid email.
-    </p>
+<form [formGroup]="registrationForm">
+    <label for="name">Name</label>
+    <input formControlName="name" type="text" placeholder="Name" (focus)="onInteraction()">
+    <div *ngIf="name?.touched && name?.invalid" class="error">
+      Name is required.
+    </div>
 
+    <br><br>
 
-    <button (click)="logFormState()">Log Form State</button> <br>
-    <button (click)="resetForm()">Reset form</button>
+    <input type="checkbox" formControlName="ageCheck" name="ageCheck">
+    <label for="ageCheck"> Age required</label><br>
+  
+    <label for="age">Age</label>
+    <input formControlName="age" type="number" placeholder="Age" (focus)="onInteraction()" >
+    <div *ngIf="age?.touched && age?.invalid" class="error">
+      Age is required and must be at least 18.
+    </div>
+
+    <br><br>
+  
+    <label for="email">Email</label>
+    <input formControlName="email" type="email" placeholder="Email" (focus)="onInteraction()">
+    <div *ngIf="email?.touched && email?.invalid" class="error">
+      A valid email is required.
+    </div>
+
+    <br><br>
+  
+    <button type="submit" (click)="onSubmit()" [disabled]="!isFormDirty">Submit</button>
+
+    <button (click)="logFormState()">check form status</button>
   </form>
+  
