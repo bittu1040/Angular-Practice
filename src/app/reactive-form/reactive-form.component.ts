@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-reactive-form',
@@ -10,6 +11,8 @@ export class ReactiveFormComponent {
   registrationForm: FormGroup;
   isInteracted = false;
   isFormDirty = false;
+
+  dataService= inject(DataService);
 
   constructor(private fb: FormBuilder) {
     this.registrationForm = this.fb.group({
@@ -22,6 +25,10 @@ export class ReactiveFormComponent {
   }
 
   ngOnInit(): void {
+    this.dataService.getData().subscribe((data) => {
+      console.log(data)
+    })
+
     this.registrationForm.valueChanges.subscribe(() => {
       this.isFormDirty = this.registrationForm.dirty; 
     });
