@@ -7,6 +7,19 @@
 </div>
 
 <hr>
+<h2>hide and show using css</h2>
+<form [formGroup]="myForm">
+  <label>
+    <input type="checkbox" formControlName="enableCheckbox" /> Enable
+  </label>
+  <div class="input-container" [class.hide]="!myForm.controls['enableCheckbox'].value">
+    <input type="text" formControlName="textInput" placeholder="Enter text" />
+  </div>
+</form>
+
+
+<div style="margin-bottom: 100px;"></div>
+<hr>
 
 <button [routerLink]="['/rxjs-operator']">rxjs operator</button>
 <button [routerLink]="['/reactive-form']">reactive form</button>
@@ -16,6 +29,11 @@
 <hr>
 <div style="height: 200px;"></div>
 <app-reactive-form></app-reactive-form>
+
+<hr>
+
+
+<hr>
 
 <hr>
 

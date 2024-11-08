@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ChildComponent } from './components/child/child.component';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -13,9 +14,15 @@ export class AppComponent implements OnInit {
 
   numbers: number[] = [1000, 2000, 3000];
 
-  ngOnInit(): void {
+  myForm!: FormGroup;
 
+  ngOnInit(): void {
+    this.myForm = new FormGroup({
+      enableCheckbox: new FormControl(false),
+      textInput: new FormControl(''),
+    });
   }
+
 
   increment() {
     // this.numbers[0] += 100; // Increment the first number in the list
